@@ -2,6 +2,13 @@ from PyQt6.QtWidgets import *
 import os
 wintitle = "PowerMenu QT"
 
+
+def shutdowncmd():
+  os.system("shutdown -h now")
+def rebootcmd():
+  os.system("reboot")
+
+
 def main():
   application = QApplication([])
   window = QWidget()
@@ -11,13 +18,8 @@ def main():
   shutdownbtn = QPushButton("Shutdown")
   rebootbtn = QPushButton("Reboot")
   
-  shutdownbtn.clicked.connect(shutdown)
-  rebootbtn.clicked.connect(reboot)
-
-  def shutdown():
-    os.system("shutdown -h now")
-  def reboot():
-    os.system("reboot")
+  shutdownbtn.clicked.connect(shutdowncmd)
+  rebootbtn.clicked.connect(rebootcmd)
 
   
 
