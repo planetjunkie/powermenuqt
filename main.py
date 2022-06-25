@@ -1,4 +1,5 @@
 from PyQt6.QtWidgets import *
+from PyQt6.QtCore import  QSize
 import os
 wintitle = "PowerMenu QT"
 
@@ -19,7 +20,7 @@ def main():
   application = QApplication([])
   window = QWidget()
   window.setWindowTitle(wintitle)
-  window.setGeometry(200, 200, 200, 200)
+  window.setFixedSize(QSize(500, 200))
   window.show()
 
   shutdownbtn = QPushButton("Shutdown")
@@ -35,12 +36,14 @@ def main():
   rebootbtn.clicked.connect(rebootcmd)
   logoutbtn.clicked.connect(logoutcmd)
   
-  
-
   layout = QHBoxLayout()
+
+
+  
   layout.addWidget(shutdownbtn)
   layout.addWidget(rebootbtn)
   layout.addWidget(logoutbtn)
+
   window.setLayout(layout)
 
   application.exec()
