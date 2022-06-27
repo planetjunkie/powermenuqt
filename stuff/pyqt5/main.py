@@ -19,6 +19,7 @@ def Suspendcmd():
 def hibernatecmd():
   os.system("systemctl hibernate")
 
+
 buttonwidth = 150
 buttonheight = 100
 
@@ -26,7 +27,7 @@ def main():
   application = QApplication([])
   window = QWidget()
   window.setWindowTitle(wintitle)
-  window.setFixedSize(QSize(900, 200))
+  window.setFixedSize(QSize(800, 200))
   window.show()
 
   shutdownbtn = QPushButton("Shutdown")
@@ -48,12 +49,14 @@ def main():
   hibernatebtn.clicked.connect(Suspendcmd)
   
   layout = QHBoxLayout()
-  
+
   layout.addWidget(shutdownbtn)
   layout.addWidget(rebootbtn)
   layout.addWidget(logoutbtn)
   layout.addWidget(Suspendbtn)
   layout.addWidget(hibernatebtn)
+
+  window.setLayout(layout)
 
   application.exec()
 

@@ -50,8 +50,6 @@ def main():
   
   layout = QHBoxLayout()
 
-
-  
   layout.addWidget(shutdownbtn)
   layout.addWidget(rebootbtn)
   layout.addWidget(logoutbtn)
