@@ -2,7 +2,7 @@ Hi, make sure to read this before executing this :)
 
 
 requirements:
-- PyQt6
+- PyQt6 (PyQt5 version is avaliable, and will get updates check /PyQt5-(legacy))
 - Python3
 - Pip package manager
 
