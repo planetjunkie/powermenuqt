@@ -3,3 +3,5 @@ sleepy time is a powermenu developed on qt, its meant for linux and you can well
 
 ### Before you use
 Check the Stuff folder and do cd to it, afterwards install the requirements.txt
+
+### **UNDER REWRITE!!!**
