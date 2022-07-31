@@ -1,5 +1,5 @@
-from PyQt6.QtWidgets import *
-from PyQt6.QtCore import  QSize
+from PyQt5.QtWidgets import *
+from PyQt5.QtCore import  QSize
 import os
 wintitle = "Sleepytime"
 
