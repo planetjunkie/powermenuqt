@@ -8,6 +8,7 @@ class Ui_MainWindow(object):
         MainWindow.setMinimumSize(QtCore.QSize(300, 200))
         MainWindow.setMaximumSize(QtCore.QSize(1000, 500))
         MainWindow.setWindowOpacity(1.0)
+        MainWindow.setWindowIcon(QtGui.QIcon('sleepytime/sleepytime.png'))
 
         def shutdowncmd():
             os.system("shutdown -h now")
