@@ -5,7 +5,7 @@ class Ui_Window(object):
     def setupUi(self, Window):
         Window.setObjectName("Window")
         Window.setFixedSize(728, 199)
-        Window.setWindowIcon(QtGui.QIcon("sleepytime/sleepytime.png"))
+        Window.setWindowIcon(QtGui.QIcon("sleepytime/sleepytime.ico"))
 
         def shutdowncmd():
             os.system("shutdown -h now")
