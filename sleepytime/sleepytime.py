@@ -1,14 +1,15 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
 import os
 
+os.system("clear && exit")
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.resize(800, 200)
         MainWindow.setMinimumSize(QtCore.QSize(300, 200))
-        MainWindow.setMaximumSize(QtCore.QSize(1000, 500))
+        MainWindow.setMaximumSize(QtCore.QSize(1000, 200))
         MainWindow.setWindowOpacity(1.0)
-        MainWindow.setWindowIcon(QtGui.QIcon('sleepytime.png'))
+        MainWindow.setWindowIcon(QtGui.QIcon('icon.ico'))
 
         def shutdowncmd():
             os.system("shutdown -h now")
@@ -35,6 +36,11 @@ class Ui_MainWindow(object):
         self.horizontalLayout_2 = QtWidgets.QHBoxLayout(self.os)
         self.osbtnlayout = QtWidgets.QHBoxLayout()
 
+        self.label = QtWidgets.QLabel(self.os)
+        self.label.setText("Leaving? Goodbye & Stay Safe <3")
+        self.label.setAlignment(QtCore.Qt.AlignCenter)
+        self.label.setObjectName("label")
+        self.verticalLayout_2.addWidget(self.label)
 
         self.suspendbtn = QtWidgets.QPushButton(self.os)
         self.suspendbtn.setMinimumSize(QtCore.QSize(50, 90))
