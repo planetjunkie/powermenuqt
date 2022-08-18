@@ -1,15 +1,17 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
+from PyQt5.QtWidgets import *
+from PyQt5.QtCore import *
+
 import os
 
 os.system("clear && exit")
 
 class Ui_MainWindow(object):
-    def setupUi(self, MainWindow):
-        MainWindow.resize(800, 200)
-        MainWindow.setMinimumSize(QtCore.QSize(300, 200))
-        MainWindow.setMaximumSize(QtCore.QSize(1000, 200))
-        MainWindow.setWindowOpacity(1.0)
-        MainWindow.setWindowIcon(QtGui.QIcon('icon.ico'))
+    def ui(self, QMainWindow):
+        QMainWindow.resize(800, 200)
+        QMainWindow.setMinimumSize(QtCore.QSize(300, 200))
+        QMainWindow.setWindowOpacity(1.0)
+        QMainWindow.setWindowIcon(QtGui.QIcon('icon.ico'))
 
         def shutdowncmd():
             os.system("shutdown -h now")
@@ -26,8 +28,18 @@ class Ui_MainWindow(object):
         def hibernatecmd():
             os.system("systemctl hibernate")
 
+        menubar = QMainWindow.menuBar()
 
-        self.centeral = QtWidgets.QWidget(MainWindow)
+        sleepymenu = menubar.addMenu("&Sleepytime")
+        sleepymenu.addAction("&Exit", quit)
+
+        aboutmenu = menubar.addMenu('&About')
+        aboutmenu.addAction('&About Sleepytime', abtwin.aboutwindow)
+        
+       
+        
+
+        self.centeral = QtWidgets.QWidget(QMainWindow)
 
         self.verticalLayout_2 = QtWidgets.QVBoxLayout(self.centeral)
         self.layoutwin = QtWidgets.QVBoxLayout()
@@ -77,11 +89,13 @@ class Ui_MainWindow(object):
         self.tabs.addTab(self.device, "")
         self.layoutwin.addWidget(self.tabs)
         self.verticalLayout_2.addLayout(self.layoutwin)
+
         MainWindow.setCentralWidget(self.centeral)
 
         self.retranslateUi(MainWindow)
         self.tabs.setCurrentIndex(0)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
+
 
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
@@ -94,12 +108,20 @@ class Ui_MainWindow(object):
         self.rebootbtn.setText(_translate("MainWindow", "Reboot"))
         self.tabs.setTabText(self.tabs.indexOf(self.device), _translate("MainWindow", "Device"))
 
+class abtwin(QDialog):
+    def aboutwindow():
+        msg = QMessageBox()
+        msg.setWindowTitle("About sleepytime")
+        msg.setText("Sleepytime is an open source powermenu, This Application was developed with love by Ali Alshamsi (@planetjunkie) --- (Current Version: v2.2 (Release Candidate))")
+        msg.exec_()
+        
+
 
 if __name__ == "__main__":
     import sys
     app = QtWidgets.QApplication(sys.argv)
     MainWindow = QtWidgets.QMainWindow()
     ui = Ui_MainWindow()
-    ui.setupUi(MainWindow)
+    ui.ui(MainWindow)
     MainWindow.show()
     sys.exit(app.exec_())
