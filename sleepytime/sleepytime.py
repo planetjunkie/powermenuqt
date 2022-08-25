@@ -28,6 +28,24 @@ class Ui_MainWindow(object):
         def hibernatecmd():
             os.system("systemctl hibernate")
 
+        def do_action(act):
+            if act == 0:
+                cw = confirm_win(shutdowncmd, "power off")
+                cw.exec()
+            elif act == 1:
+                cw = confirm_win(rebootcmd, "reboot")
+                cw.exec()
+            elif act == 2:
+                cw = confirm_win(logoutcmd, "logout")
+                cw.exec()
+            elif act == 3:
+                cw = confirm_win(suspendcmd, "suspend the computer")
+                cw.exec()
+            elif act == 4:
+                cw = confirm_win(hibernatecmd, "hibernate the computer")
+                cw.exec()
+
+
         menubar = QMainWindow.menuBar()
 
         sleepymenu = menubar.addMenu("&Sleepytime")
@@ -56,17 +74,17 @@ class Ui_MainWindow(object):
 
         self.suspendbtn = QtWidgets.QPushButton(self.os)
         self.suspendbtn.setMinimumSize(QtCore.QSize(50, 90))
-        self.suspendbtn.clicked.connect(suspendcmd)
+        self.suspendbtn.clicked.connect(lambda: do_action(3))
         self.osbtnlayout.addWidget(self.suspendbtn)
 
         self.hibernatebtn = QtWidgets.QPushButton(self.os)
         self.hibernatebtn.setMinimumSize(QtCore.QSize(50, 90))
-        self.hibernatebtn.clicked.connect(hibernatecmd)
+        self.hibernatebtn.clicked.connect(lambda: do_action(4))
         self.osbtnlayout.addWidget(self.hibernatebtn)
 
         self.logoutbtn = QtWidgets.QPushButton(self.os)
         self.logoutbtn.setMinimumSize(QtCore.QSize(50, 90))
-        self.logoutbtn.clicked.connect(logoutcmd)
+        self.logoutbtn.clicked.connect(lambda: do_action(2))
         self.osbtnlayout.addWidget(self.logoutbtn)
         
         self.horizontalLayout_2.addLayout(self.osbtnlayout)
@@ -77,12 +95,12 @@ class Ui_MainWindow(object):
 
         self.shutdownbtn = QtWidgets.QPushButton(self.device)
         self.shutdownbtn.setMinimumSize(QtCore.QSize(0, 90))
-        self.shutdownbtn.clicked.connect(shutdowncmd)
+        self.shutdownbtn.clicked.connect(lambda: do_action(0))
         self.devicebtnlayout.addWidget(self.shutdownbtn)
 
         self.rebootbtn = QtWidgets.QPushButton(self.device)
         self.rebootbtn.setMinimumSize(QtCore.QSize(0, 90))
-        self.rebootbtn.clicked.connect(rebootcmd)
+        self.rebootbtn.clicked.connect(lambda: do_action(1))
         self.devicebtnlayout.addWidget(self.rebootbtn)
         self.horizontalLayout_3.addLayout(self.devicebtnlayout)
         
@@ -114,7 +132,34 @@ class abtwin(QDialog):
         msg.setWindowTitle("About sleepytime")
         msg.setText("Sleepytime is an open source powermenu, This Application was developed with love by Ali Alshamsi (@planetjunkie) --- (Current Version: v2.2 (Release Candidate))")
         msg.exec_()
-        
+
+class confirm_win(QDialog):
+    def __init__(self, function, action):
+        super().__init__()
+
+        self.function = function
+        self.action = action
+
+        self.setWindowTitle("Confirm")
+
+        button = QDialogButtonBox.Yes | QDialogButtonBox.Cancel
+
+        self.button_box = QDialogButtonBox(button)
+        self.button_box.accepted.connect(self.run_func)
+        self.button_box.rejected.connect(self.nothing)
+
+        self.boxlay = QVBoxLayout()
+        lbl_message = QLabel(f"Are you sure you would like to {self.action}?")
+        self.boxlay.addWidget(lbl_message)
+        self.boxlay.addWidget(self.button_box)
+        self.setLayout(self.boxlay)
+
+    def nothing(self):
+        self.close()
+
+    def run_func(self):
+        self.close()
+        self.function()
 
 
 if __name__ == "__main__":
