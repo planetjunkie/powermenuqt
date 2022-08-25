@@ -8,3 +8,7 @@ Go to the releases section, you should find the download there! (Tested on: Fedo
 ### Current plans for sleepytime:
 - [ ] Port the project to Ubuntu Phones and release on the Openstore
 - [ ] Release Sleepytime to Flathub & Snapcraft
+
+### Contributors
+- @planetjunkie
+- @pilot877
